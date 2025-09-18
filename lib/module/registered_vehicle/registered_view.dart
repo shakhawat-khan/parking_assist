@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 
-class GiveRentView extends StatefulWidget {
+class RegisteredVehicleView extends StatefulWidget {
   @override
-  _GiveRentViewState createState() => _GiveRentViewState();
+  _RegisteredVehicleViewState createState() => _RegisteredVehicleViewState();
 }
 
-class _GiveRentViewState extends State<GiveRentView> {
+class _RegisteredVehicleViewState extends State<RegisteredVehicleView> {
   final _formKey = GlobalKey<FormState>();
-  String location = '';
-  String price = '';
-  String availability = '';
+  String ownerName = '';
+  String vehicleNumber = '';
+  String vehicleType = '';
   String contact = '';
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      // Here you can handle the submission logic, e.g., send to backend or show confirmation
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Success'),
-          content: Text('Your parking space has been listed for rent!'),
+          title: Text('Registration Successful'),
+          content: Text('Your vehicle has been registered!'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
@@ -36,7 +35,8 @@ class _GiveRentViewState extends State<GiveRentView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rent Your Parking Space'),
+        title: Text('Register Your Vehicle'),
+
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -46,16 +46,16 @@ class _GiveRentViewState extends State<GiveRentView> {
             children: [
               SizedBox(height: 20),
               Center(
-                child: Icon(Icons.local_parking, size: 80, color: Colors.indigo),
+                child: Icon(Icons.directions_car, size: 80, color: Colors.indigo),
               ),
               SizedBox(height: 20),
               Text(
-                'List Your Empty Parking Space',
+                'Register Your Vehicle',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
               Text(
-                'Fill out the form below to rent out your parking spot and earn extra income.',
+                'Fill out the form below to register your vehicle for parking services.',
                 style: TextStyle(fontSize: 16, color: Colors.grey[700]),
               ),
               SizedBox(height: 30),
@@ -65,33 +65,32 @@ class _GiveRentViewState extends State<GiveRentView> {
                   children: [
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: 'Location',
+                        labelText: 'Owner Name',
                         border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.location_on),
+                        prefixIcon: Icon(Icons.person),
                       ),
-                      validator: (value) => value == null || value.isEmpty ? 'Please enter location' : null,
-                      onSaved: (value) => location = value ?? '',
+                      validator: (value) => value == null || value.isEmpty ? 'Please enter owner name' : null,
+                      onSaved: (value) => ownerName = value ?? '',
                     ),
                     SizedBox(height: 20),
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: 'Price per hour ()',
+                        labelText: 'Vehicle Number',
                         border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.attach_money),
+                        prefixIcon: Icon(Icons.confirmation_number),
                       ),
-                      keyboardType: TextInputType.number,
-                      validator: (value) => value == null || value.isEmpty ? 'Please enter price' : null,
-                      onSaved: (value) => price = value ?? '',
+                      validator: (value) => value == null || value.isEmpty ? 'Please enter vehicle number' : null,
+                      onSaved: (value) => vehicleNumber = value ?? '',
                     ),
                     SizedBox(height: 20),
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: 'Availability (e.g. 9am-6pm)',
+                        labelText: 'Vehicle Type',
                         border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.access_time),
+                        prefixIcon: Icon(Icons.directions_car),
                       ),
-                      validator: (value) => value == null || value.isEmpty ? 'Please enter availability' : null,
-                      onSaved: (value) => availability = value ?? '',
+                      validator: (value) => value == null || value.isEmpty ? 'Please enter vehicle type' : null,
+                      onSaved: (value) => vehicleType = value ?? '',
                     ),
                     SizedBox(height: 20),
                     TextFormField(
@@ -109,13 +108,14 @@ class _GiveRentViewState extends State<GiveRentView> {
                       width: double.infinity,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+               
                           padding: EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         onPressed: _submitForm,
-                        child: Text('Submit', style: TextStyle(fontSize: 18)),
+                        child: Text('Register', style: TextStyle(fontSize: 18)),
                       ),
                     ),
                   ],

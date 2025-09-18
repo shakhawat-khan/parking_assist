@@ -117,87 +117,88 @@ class _DealsPageState extends State<DealsPage> {
             const Divider(height: 40),
 
             // Rent Parking Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Do you want to rent your parking place?",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-                Switch(
-                  value: _wantsToRent,
-                  onChanged: (val) {
-                    setState(() {
-                      _wantsToRent = val;
-                    });
-                  },
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     const Text(
+            //       "Do you want to rent your parking place?",
+            //       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            //     ),
+            //     Switch(
+            //       value: _wantsToRent,
+            //       onChanged: (val) {
+            //         setState(() {
+            //           _wantsToRent = val;
+            //         });
+            //       },
+            //     ),
+            //   ],
+            // ),
 
-            if (_wantsToRent) ...[
-              const SizedBox(height: 12),
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: _nameCtrl,
-                      decoration: const InputDecoration(
-                        labelText: "Owner Name",
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (val) =>
-                          val!.isEmpty ? "Please enter your name" : null,
-                    ),
-                    const SizedBox(height: 12),
-                    TextFormField(
-                      controller: _addressCtrl,
-                      decoration: const InputDecoration(
-                        labelText: "Parking Address",
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (val) =>
-                          val!.isEmpty ? "Please enter address" : null,
-                    ),
-                    const SizedBox(height: 12),
-                    TextFormField(
-                      controller: _priceCtrl,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        labelText: "Price per Hour (\$)",
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (val) => val!.isEmpty ? "Enter price" : null,
-                    ),
-                    const SizedBox(height: 12),
-                    TextFormField(
-                      controller: _capacityCtrl,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        labelText: "Capacity (Number of spots)",
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (val) =>
-                          val!.isEmpty ? "Enter capacity" : null,
-                    ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 48,
-                      child: ElevatedButton(
-                        onPressed: _submitRentForm,
-                        child: const Text(
-                          "Submit Request",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ]
+            // if (_wantsToRent) ...[
+            //   const SizedBox(height: 12),
+            //   Form(
+            //     key: _formKey,
+            //     child: Column(
+            //       children: [
+            //         TextFormField(
+            //           controller: _nameCtrl,
+            //           decoration: const InputDecoration(
+            //             labelText: "Owner Name",
+            //             border: OutlineInputBorder(),
+            //           ),
+            //           validator: (val) =>
+            //               val!.isEmpty ? "Please enter your name" : null,
+            //         ),
+            //         const SizedBox(height: 12),
+            //         TextFormField(
+            //           controller: _addressCtrl,
+            //           decoration: const InputDecoration(
+            //             labelText: "Parking Address",
+            //             border: OutlineInputBorder(),
+            //           ),
+            //           validator: (val) =>
+            //               val!.isEmpty ? "Please enter address" : null,
+            //         ),
+            //         const SizedBox(height: 12),
+            //         TextFormField(
+            //           controller: _priceCtrl,
+            //           keyboardType: TextInputType.number,
+            //           decoration: const InputDecoration(
+            //             labelText: "Price per Hour (\$)",
+            //             border: OutlineInputBorder(),
+            //           ),
+            //           validator: (val) => val!.isEmpty ? "Enter price" : null,
+            //         ),
+            //         const SizedBox(height: 12),
+            //         TextFormField(
+            //           controller: _capacityCtrl,
+            //           keyboardType: TextInputType.number,
+            //           decoration: const InputDecoration(
+            //             labelText: "Capacity (Number of spots)",
+            //             border: OutlineInputBorder(),
+            //           ),
+            //           validator: (val) =>
+            //               val!.isEmpty ? "Enter capacity" : null,
+            //         ),
+            //         const SizedBox(height: 20),
+            //         SizedBox(
+            //           width: double.infinity,
+            //           height: 48,
+            //           child: ElevatedButton(
+            //             onPressed: _submitRentForm,
+            //             child: const Text(
+            //               "Submit Request",
+            //               style: TextStyle(
+            //                   fontWeight: FontWeight.bold, fontSize: 16),
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ]
+          
           ],
         ),
       ),

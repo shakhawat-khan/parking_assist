@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parking_assist/module/booking_list/booking_list_view.dart';
+import 'package:parking_assist/module/day_night_parking/day_night_view.dart';
 import 'package:parking_assist/module/deals/deals_view.dart';
 import 'package:parking_assist/module/give_rent/give_rent_view.dart';
 import 'package:parking_assist/module/parking_search/parking_search_view.dart';
@@ -130,14 +131,14 @@ class _ParkAssistHomePageState extends State<ParkAssistHomePage> {
                 Expanded(
                   child: _buildQuickActionCard(
                     icon: Icons.local_parking,
-                    title: 'Are you Finding Parking your car?',
+                    title: 'Day Long / Whole Night Parking option',
                     subtitle: 'Near you',
                     color: Colors.green,
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ParkingSearchPage(),
+                            builder: (context) =>  DayNightParkingView(),
                           ));
                     },
                   ),
@@ -153,7 +154,7 @@ class _ParkAssistHomePageState extends State<ParkAssistHomePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ParkingRentalForm(),
+                            builder: (context) =>  GiveRentView(),
                           ));
                     },
                   ),

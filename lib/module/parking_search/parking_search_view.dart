@@ -79,7 +79,7 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
         rating: 4.5,
         openTime: '6:00 AM',
         closeTime: '11:00 PM',
-        facilities: ['Security', 'CCTV', 'Covered', 'EV Charging'],
+        facilities: ['Security', 'CCTV', 'Covered', 'EV Charging', 'Disability Parking'],
         distance: '0.8 km',
         isFree: false),
     ParkingSpot(
@@ -94,7 +94,7 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
         rating: 4.2,
         openTime: '7:00 AM',
         closeTime: '10:00 PM',
-        facilities: ['Security', 'Covered', 'Wheelchair Access'],
+        facilities: ['Security', 'Covered', 'Wheelchair Access','EV Charging,' ,'Disability Parking'],
         distance: '1.2 km',
         isFree: true),
     ParkingSpot(
@@ -109,7 +109,7 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
         rating: 4.7,
         openTime: '8:00 AM',
         closeTime: '11:30 PM',
-        facilities: ['Security', 'CCTV', 'Covered', 'Food Court', 'Restrooms'],
+        facilities: ['Security', 'CCTV', 'Covered', 'Food Court', 'Restrooms','Disability Parking'],
         distance: '2.1 km',
         isFree: false),
 
@@ -125,7 +125,7 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
         rating: 4.1,
         openTime: '6:00 AM',
         closeTime: '12:00 AM',
-        facilities: ['Security', 'Open Air', 'ATM'],
+        facilities: ['Security', 'Open Air', 'ATM','Disability Parking'],
         distance: '5.2 km',
         isFree: false),
     ParkingSpot(
@@ -140,7 +140,7 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
         rating: 4.3,
         openTime: '7:00 AM',
         closeTime: '11:00 PM',
-        facilities: ['Security', 'CCTV', 'Covered'],
+        facilities: ['Security', 'CCTV', 'Covered','Disability Parking'],
         distance: '1.5 km',
         isFree: true),
 
@@ -171,7 +171,7 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
         rating: 3.8,
         openTime: '8:00 AM',
         closeTime: '10:00 PM',
-        facilities: ['Security', 'Covered'],
+        facilities: ['Security', 'Covered','Disability Parking'],
         distance: '2.8 km',
         isFree: false),
 
@@ -197,12 +197,12 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
         lat: 23.7186,
         lng: 90.3854,
         totalCapacity: 50,
-        availableSpots: 5,
+        availableSpots: 0,
         pricePerHour: 12.0,
         rating: 3.6,
         openTime: '6:00 AM',
         closeTime: '8:00 PM',
-        facilities: ['Security', 'Historical Site'],
+        facilities: ['Security', 'Historical Site','Disability Parking'],
         distance: '4.2 km',
         isFree: false),
 
@@ -218,7 +218,7 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
         rating: 4.4,
         openTime: '5:30 AM',
         closeTime: '11:30 PM',
-        facilities: ['Security', 'CCTV', 'Covered', 'Playground'],
+        facilities: ['Security', 'CCTV', 'Covered', 'Playground','EV Charging'],
         distance: '4.8 km',
         isFree: false),
     ParkingSpot(
@@ -234,7 +234,7 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
         rating: 4.0,
         openTime: '6:00 AM',
         closeTime: '11:00 PM',
-        facilities: ['Security', 'Covered', 'Restaurant'],
+        facilities: ['Security', 'Covered', 'Restaurant','EV Charging'],
         distance: '3.1 km',
         isFree: true),
     //   id: '15',
@@ -616,21 +616,21 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
               // Payment Method Options
               _buildPaymentOption(
                 icon: Icons.account_balance_wallet,
-                title: 'Mobile Banking',
-                subtitle: 'bKash, Nagad, Rocket',
+                title: 'After Pay',
+                subtitle: 'you can use After Pay',
                 onTap: () => _processPayment(
                     spot, startTime, duration, 'Mobile Banking'),
               ),
               _buildPaymentOption(
                 icon: Icons.credit_card,
-                title: 'Credit/Debit Card',
-                subtitle: 'Visa, MasterCard',
+                title: 'Pay Pal',
+                subtitle: 'you can use paypal',
                 onTap: () => _processPayment(spot, startTime, duration, 'Card'),
               ),
               _buildPaymentOption(
                 icon: Icons.account_balance,
-                title: 'Internet Banking',
-                subtitle: 'All major banks',
+                title: 'Card',
+                subtitle: 'you can use card',
                 onTap: () => _processPayment(
                     spot, startTime, duration, 'Internet Banking'),
               ),
@@ -1321,16 +1321,48 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
                   const SizedBox(height: 8),
                   Wrap(
                     spacing: 8,
-                    children: spot.facilities.map((facility) {
-                      return Chip(
-                        label: Text(
-                          facility,
-                          style: const TextStyle(fontSize: 12),
+                    children: [
+                      ...spot.facilities.map((facility) {
+                        if (facility == 'EV Charging') {
+                          return Chip(
+                            avatar: Icon(Icons.ev_station, color: Colors.green, size: 18),
+                            label: Text('EV Charging', style: const TextStyle(fontSize: 12)),
+                            backgroundColor: Colors.green.shade50,
+                            side: BorderSide(color: Colors.green.shade200),
+                          );
+                        }
+                        if (facility == 'Disability Parking') {
+                          return Chip(
+                            avatar: Icon(Icons.accessible, color: Colors.blue, size: 18),
+                            label: Text('Disability Parking', style: const TextStyle(fontSize: 12)),
+                            backgroundColor: Colors.blue.shade100,
+                            side: BorderSide(color: Colors.blue.shade400),
+                          );
+                        }
+                        return Chip(
+                          label: Text(
+                            facility,
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          backgroundColor: Colors.blue.shade50,
+                          side: BorderSide(color: Colors.blue.shade200),
+                        );
+                      }).toList(),
+                      if (!spot.facilities.contains('Disability Parking'))
+                        Chip(
+                          avatar: Icon(Icons.block, color: Colors.red, size: 18),
+                          label: Text('No Disability Option', style: const TextStyle(fontSize: 12)),
+                          backgroundColor: Colors.red.shade50,
+                          side: BorderSide(color: Colors.red.shade200),
                         ),
-                        backgroundColor: Colors.blue.shade50,
-                        side: BorderSide(color: Colors.blue.shade200),
-                      );
-                    }).toList(),
+                      if (spot.facilities.contains('EV Charging'))
+                        Chip(
+                          avatar: Icon(Icons.battery_charging_full, color: Colors.green, size: 18),
+                          label: Text('EV Capacity: ${spot.totalCapacity}', style: const TextStyle(fontSize: 12)),
+                          backgroundColor: Colors.green.shade100,
+                          side: BorderSide(color: Colors.green.shade400),
+                        ),
+                    ],
                   ),
 
                   const Spacer(),
@@ -1341,11 +1373,33 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            _bookNow(spot);
+                             if(spot.availableSpots == 0) {
+
+                                 ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text('No space available for scheduling!'),
+                                  backgroundColor: Colors.red,
+                                  behavior: SnackBarBehavior.floating,
+                                ),
+                              );
+                            } else{
+                              _bookNow(spot);
+                            }
+                          
                           },
                           icon: const Icon(Icons.flash_on, size: 18),
                           label: const Text('Book Now'),
-                          style: ElevatedButton.styleFrom(
+                          style: spot.availableSpots == 0 ? 
+                          ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                          )
+                          : 
+                           ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange,
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
@@ -1359,11 +1413,16 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            _showScheduleBookingDialog(spot);
+                        
+                              _showScheduleBookingDialog(spot);
+                             
+                            
+                            
                           },
                           icon: const Icon(Icons.schedule, size: 18),
                           label: const Text('Schedule'),
-                          style: ElevatedButton.styleFrom(
+                          style:  
+                           ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(

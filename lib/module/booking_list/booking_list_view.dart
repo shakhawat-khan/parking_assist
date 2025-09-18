@@ -26,8 +26,8 @@ class ParkingBooking {
 final List<ParkingBooking> dummyBookings = [
   ParkingBooking(
     bookingId: "B001",
-    spotName: "Gulshan Shopping Center",
-    address: "Gulshan Avenue, Gulshan-1, Dhaka",
+    spotName: "Sydney Opera House Parking",
+    address: "2 Macquarie St, Sydney NSW 2000",
     startTime: DateTime.now().subtract(const Duration(hours: 1)),
     endTime: DateTime.now().add(const Duration(hours: 2)),
     totalPrice: 75.0,
@@ -35,8 +35,8 @@ final List<ParkingBooking> dummyBookings = [
   ),
   ParkingBooking(
     bookingId: "B002",
-    spotName: "Bashundhara City Mall",
-    address: "Panthapath, Dhaka",
+    spotName: "Westfield Sydney Mall",
+    address: "Pitt St & Market St, Sydney NSW 2000",
     startTime: DateTime.now().subtract(const Duration(days: 1, hours: 3)),
     endTime: DateTime.now().subtract(const Duration(days: 1)),
     totalPrice: 60.0,
@@ -44,8 +44,8 @@ final List<ParkingBooking> dummyBookings = [
   ),
   ParkingBooking(
     bookingId: "B003",
-    spotName: "Motijheel Commercial Area",
-    address: "Motijheel, Dhaka",
+    spotName: "Barangaroo Reserve Parking",
+    address: "Barangaroo Ave, Sydney NSW 2000",
     startTime: DateTime.now().add(const Duration(days: 1, hours: 1)),
     endTime: DateTime.now().add(const Duration(days: 1, hours: 3)),
     totalPrice: 70.0,

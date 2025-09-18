@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:parking_assist/module/help_support/help_support_view.dart';
+import 'package:parking_assist/module/registered_vehicle/registered_view.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -61,9 +63,17 @@ class ProfilePage extends StatelessWidget {
             const Divider(),
             _buildProfileOption(
               icon: Icons.person,
+              title: "Registered your vehicle",
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => RegisteredVehicleView(), ));
+              },
+            ),
+            _buildProfileOption(
+              icon: Icons.person,
               title: "Edit Profile",
               onTap: () {},
             ),
+
             _buildProfileOption(
               icon: Icons.payment,
               title: "Payment Methods",
@@ -77,7 +87,9 @@ class ProfilePage extends StatelessWidget {
             _buildProfileOption(
               icon: Icons.help,
               title: "Help & Support",
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HelpSupportView(),));
+              },
             ),
             _buildProfileOption(
               icon: Icons.logout,
