@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:parking_assist/module/booking_list/booking_list_view.dart';
+import 'package:parking_assist/module/deals/deals_view.dart';
+import 'package:parking_assist/module/give_rent/give_rent_view.dart';
 import 'package:parking_assist/module/parking_search/parking_search_view.dart';
+import 'package:parking_assist/module/profile_page/profile_page_view.dart';
+import 'package:parking_assist/module/reserve_now/reserve_now.dart';
 
 class ParkAssistHomePage extends StatefulWidget {
   const ParkAssistHomePage({super.key});
@@ -16,10 +21,10 @@ class _ParkAssistHomePageState extends State<ParkAssistHomePage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.menu, color: Colors.black87),
-          onPressed: () {},
-        ),
+        // leading: IconButton(
+        //   icon: const Icon(Icons.menu, color: Colors.black87),
+        //   onPressed: () {},
+        // ),
         title: const Text(
           'Park Assist',
           style: TextStyle(
@@ -28,17 +33,17 @@ class _ParkAssistHomePageState extends State<ParkAssistHomePage> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        actions: [
-          IconButton(
-            icon:
-                const Icon(Icons.notifications_outlined, color: Colors.black87),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.account_circle_outlined,
-                color: Colors.black87),
-            onPressed: () {},
-          ),
+        actions: const [
+          // IconButton(
+          //   icon:
+          //       const Icon(Icons.notifications_outlined, color: Colors.black87),
+          //   onPressed: () {},
+          // ),
+          // IconButton(
+          //   icon: const Icon(Icons.account_circle_outlined,
+          //       color: Colors.black87),
+          //   onPressed: () {},
+          // ),
         ],
       ),
       body: SingleChildScrollView(
@@ -74,7 +79,7 @@ class _ParkAssistHomePageState extends State<ParkAssistHomePage> {
                       Icon(Icons.location_on, color: Colors.white, size: 16),
                       SizedBox(width: 4),
                       Text(
-                        'Current Location: Dhaka, Bangladesh',
+                        'Current Location: Sydney,Australia',
                         style: TextStyle(
                           color: Colors.white70,
                           fontSize: 14,
@@ -125,20 +130,32 @@ class _ParkAssistHomePageState extends State<ParkAssistHomePage> {
                 Expanded(
                   child: _buildQuickActionCard(
                     icon: Icons.local_parking,
-                    title: 'Find Parking',
+                    title: 'Are you Finding Parking your car?',
                     subtitle: 'Near you',
                     color: Colors.green,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ParkingSearchPage(),
+                          ));
+                    },
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: _buildQuickActionCard(
                     icon: Icons.book_online,
-                    title: 'Reserve Now',
-                    subtitle: 'Book ahead',
+                    title: 'Give Rent parking space?',
+                    subtitle: 'Registration Here',
                     color: Colors.orange,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ParkingRentalForm(),
+                          ));
+                    },
                   ),
                 ),
               ],
@@ -202,19 +219,19 @@ class _ParkAssistHomePageState extends State<ParkAssistHomePage> {
             const SizedBox(height: 16),
 
             _buildRecentActivityCard(
-              title: 'Gulshan Shopping Center',
+              title: 'Sydney Opera House Car Park',
               date: 'Yesterday, 2:30 PM',
               duration: '2 hours',
-              amount: '৳50',
+              amount: '\$50',
             ),
 
             const SizedBox(height: 12),
 
             _buildRecentActivityCard(
-              title: 'Dhanmondi Plaza',
+              title: 'Darling Harbour Secure Parking',
               date: '2 days ago, 10:15 AM',
               duration: '3 hours',
-              amount: '৳75',
+              amount: '\$75',
             ),
 
             const SizedBox(height: 80), // Bottom padding for navigation
@@ -229,6 +246,27 @@ class _ParkAssistHomePageState extends State<ParkAssistHomePage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ParkingSearchPage(),
+                ));
+          }
+          if (index == 2) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BookingListPage(),
+                ));
+          }
+          if (index == 3) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const DealsPage(),
+                ));
+          }
+          if (index == 4) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfilePage(),
                 ));
           }
         },
@@ -464,9 +502,21 @@ class _ParkAssistHomePageState extends State<ParkAssistHomePage> {
 
   String _getParkingSpotName(int index) {
     final names = [
-      'Gulshan Shopping Center',
-      'Dhanmondi Plaza',
-      'Bashundhara City'
+      'Sydney Opera House Car Park',
+      'Harbour Bridge North Parking',
+      'Darling Harbour Secure Parking',
+      'Circular Quay Station Parking',
+      'Bondi Beach Public Car Park',
+      'Newtown King Street Parking',
+      'Surry Hills Secure Parking',
+      'Barangaroo Reserve Parking',
+      'Central Station Car Park',
+      'Pitt Street Mall Parking',
+      'The Rocks Parking Station',
+      'Martin Place Secure Parking',
+      'Ultimo Broadway Parking',
+      'Glebe Point Road Car Park',
+      'Manly Wharf Parking'
     ];
     return names[index];
   }
@@ -482,7 +532,7 @@ class _ParkAssistHomePageState extends State<ParkAssistHomePage> {
   }
 
   String _getParkingPrice(int index) {
-    final prices = ['৳25', '৳30', '৳35'];
+    final prices = ['\$25', '\$30', '\$35'];
     return prices[index];
   }
 

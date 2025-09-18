@@ -15,22 +15,23 @@ class ParkingSpot {
   final String closeTime;
   final List<String> facilities;
   final String distance;
+  final bool isFree;
 
-  ParkingSpot({
-    required this.id,
-    required this.name,
-    required this.address,
-    required this.lat,
-    required this.lng,
-    required this.totalCapacity,
-    required this.availableSpots,
-    required this.pricePerHour,
-    required this.rating,
-    required this.openTime,
-    required this.closeTime,
-    required this.facilities,
-    required this.distance,
-  });
+  ParkingSpot(
+      {required this.id,
+      required this.name,
+      required this.address,
+      required this.lat,
+      required this.lng,
+      required this.totalCapacity,
+      required this.availableSpots,
+      required this.pricePerHour,
+      required this.rating,
+      required this.openTime,
+      required this.closeTime,
+      required this.facilities,
+      required this.distance,
+      required this.isFree});
 }
 
 class ParkingMarker {
@@ -66,244 +67,190 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
 
   // Dummy parking spots data - More distributed around Dhaka
   List<ParkingSpot> parkingSpots = [
-    // Central Dhaka
     ParkingSpot(
-      id: '1',
-      name: 'Gulshan Shopping Center',
-      address: 'Gulshan Avenue, Gulshan-1, Dhaka',
-      lat: 23.7808,
-      lng: 90.4176,
-      totalCapacity: 150,
-      availableSpots: 25,
-      pricePerHour: 25.0,
-      rating: 4.5,
-      openTime: '6:00 AM',
-      closeTime: '11:00 PM',
-      facilities: ['Security', 'CCTV', 'Covered', 'EV Charging'],
-      distance: '0.8 km',
-    ),
+        id: '1',
+        name: 'Broadway Shopping Centre',
+        address: 'Broadway, Sydney NSW 2007, Australia',
+        lat: 23.7808,
+        lng: 90.4176,
+        totalCapacity: 150,
+        availableSpots: 25,
+        pricePerHour: 25.0,
+        rating: 4.5,
+        openTime: '6:00 AM',
+        closeTime: '11:00 PM',
+        facilities: ['Security', 'CCTV', 'Covered', 'EV Charging'],
+        distance: '0.8 km',
+        isFree: false),
     ParkingSpot(
-      id: '2',
-      name: 'Dhanmondi Plaza Parking',
-      address: 'Satmasjid Road, Dhanmondi, Dhaka',
-      lat: 23.7461,
-      lng: 90.3742,
-      totalCapacity: 80,
-      availableSpots: 12,
-      pricePerHour: 30.0,
-      rating: 4.2,
-      openTime: '7:00 AM',
-      closeTime: '10:00 PM',
-      facilities: ['Security', 'Covered', 'Wheelchair Access'],
-      distance: '1.2 km',
-    ),
+        id: '2',
+        name: 'Central Park Mall',
+        address: '28 Broadway, Chippendale NSW 2008, Australia',
+        lat: 23.7461,
+        lng: 90.3742,
+        totalCapacity: 80,
+        availableSpots: 12,
+        pricePerHour: 30.0,
+        rating: 4.2,
+        openTime: '7:00 AM',
+        closeTime: '10:00 PM',
+        facilities: ['Security', 'Covered', 'Wheelchair Access'],
+        distance: '1.2 km',
+        isFree: true),
     ParkingSpot(
-      id: '3',
-      name: 'Bashundhara City Mall',
-      address: 'Panthapath, Dhaka',
-      lat: 23.7507,
-      lng: 90.3938,
-      totalCapacity: 300,
-      availableSpots: 45,
-      pricePerHour: 20.0,
-      rating: 4.7,
-      openTime: '8:00 AM',
-      closeTime: '11:30 PM',
-      facilities: ['Security', 'CCTV', 'Covered', 'Food Court', 'Restrooms'],
-      distance: '2.1 km',
-    ),
+        id: '3',
+        name: 'Westfield Pitt Street',
+        address: 'Pitt St, Sydney NSW 2000, Australia',
+        lat: 23.7507,
+        lng: 90.3938,
+        totalCapacity: 300,
+        availableSpots: 45,
+        pricePerHour: 20.0,
+        rating: 4.7,
+        openTime: '8:00 AM',
+        closeTime: '11:30 PM',
+        facilities: ['Security', 'CCTV', 'Covered', 'Food Court', 'Restrooms'],
+        distance: '2.1 km',
+        isFree: false),
 
-    // North Dhaka
     ParkingSpot(
-      id: '4',
-      name: 'Uttara Sector 7 Parking',
-      address: 'Sector 7, Uttara, Dhaka',
-      lat: 23.8759,
-      lng: 90.3795,
-      totalCapacity: 200,
-      availableSpots: 67,
-      pricePerHour: 20.0,
-      rating: 4.1,
-      openTime: '6:00 AM',
-      closeTime: '12:00 AM',
-      facilities: ['Security', 'Open Air', 'ATM'],
-      distance: '5.2 km',
-    ),
+        id: '4',
+        name: 'Rockhampton Central Plaza',
+        address: '100 East St, Rockhampton QLD 4700, Australia',
+        lat: 23.8759,
+        lng: 90.3795,
+        totalCapacity: 200,
+        availableSpots: 67,
+        pricePerHour: 20.0,
+        rating: 4.1,
+        openTime: '6:00 AM',
+        closeTime: '12:00 AM',
+        facilities: ['Security', 'Open Air', 'ATM'],
+        distance: '5.2 km',
+        isFree: false),
     ParkingSpot(
-      id: '5',
-      name: 'Banani Square Parking',
-      address: 'Banani, Dhaka',
-      lat: 23.7936,
-      lng: 90.4067,
-      totalCapacity: 90,
-      availableSpots: 18,
-      pricePerHour: 28.0,
-      rating: 4.3,
-      openTime: '7:00 AM',
-      closeTime: '11:00 PM',
-      facilities: ['Security', 'CCTV', 'Covered'],
-      distance: '1.5 km',
-    ),
+        id: '5',
+        name: 'Rozelle Public Parking',
+        address: '663 Darling St, Rozelle NSW 2039, Australia',
+        lat: 23.7936,
+        lng: 90.4067,
+        totalCapacity: 90,
+        availableSpots: 18,
+        pricePerHour: 28.0,
+        rating: 4.3,
+        openTime: '7:00 AM',
+        closeTime: '11:00 PM',
+        facilities: ['Security', 'CCTV', 'Covered'],
+        distance: '1.5 km',
+        isFree: true),
 
-    // South Dhaka
     ParkingSpot(
-      id: '6',
-      name: 'Motijheel Commercial Area',
-      address: 'Motijheel, Dhaka',
-      lat: 23.7330,
-      lng: 90.4172,
-      totalCapacity: 120,
-      availableSpots: 35,
-      pricePerHour: 35.0,
-      rating: 4.1,
-      openTime: '6:00 AM',
-      closeTime: '9:00 PM',
-      facilities: ['Security', 'CCTV', 'Covered', 'Valet Service'],
-      distance: '1.8 km',
-    ),
+        id: '6',
+        name: 'Martin Place Secure Parking',
+        address: '1 Martin Pl, Sydney NSW 2000, Australia',
+        lat: 23.7330,
+        lng: 90.4172,
+        totalCapacity: 120,
+        availableSpots: 35,
+        pricePerHour: 35.0,
+        rating: 4.1,
+        openTime: '6:00 AM',
+        closeTime: '9:00 PM',
+        facilities: ['Security', 'CCTV', 'Covered', 'Valet Service'],
+        distance: '1.8 km',
+        isFree: false),
     ParkingSpot(
-      id: '7',
-      name: 'New Market Parking Hub',
-      address: 'New Market, Dhaka',
-      lat: 23.7290,
-      lng: 90.3854,
-      totalCapacity: 75,
-      availableSpots: 22,
-      pricePerHour: 22.0,
-      rating: 3.8,
-      openTime: '8:00 AM',
-      closeTime: '10:00 PM',
-      facilities: ['Security', 'Covered'],
-      distance: '2.8 km',
-    ),
+        id: '7',
+        name: 'Paddy\'s Market Parking',
+        address: '13 Hay St, Haymarket NSW 2000, Australia',
+        lat: 23.7290,
+        lng: 90.3854,
+        totalCapacity: 75,
+        availableSpots: 22,
+        pricePerHour: 22.0,
+        rating: 3.8,
+        openTime: '8:00 AM',
+        closeTime: '10:00 PM',
+        facilities: ['Security', 'Covered'],
+        distance: '2.8 km',
+        isFree: false),
 
-    // Old Dhaka
     ParkingSpot(
-      id: '8',
-      name: 'Wari Parking Hub',
-      address: 'Wari, Old Dhaka',
-      lat: 23.7181,
-      lng: 90.4203,
-      totalCapacity: 60,
-      availableSpots: 8,
-      pricePerHour: 15.0,
-      rating: 3.9,
-      openTime: '5:00 AM',
-      closeTime: '12:00 AM',
-      facilities: ['Security', 'Open Air'],
-      distance: '3.5 km',
-    ),
+        id: '8',
+        name: 'Darling Harbour Car Park',
+        address: '100 Murray St, Pyrmont NSW 2009, Australia',
+        lat: 23.7181,
+        lng: 90.4203,
+        totalCapacity: 60,
+        availableSpots: 8,
+        pricePerHour: 15.0,
+        rating: 3.9,
+        openTime: '5:00 AM',
+        closeTime: '12:00 AM',
+        facilities: ['Security', 'Open Air'],
+        distance: '3.5 km',
+        isFree: false),
     ParkingSpot(
-      id: '9',
-      name: 'Lalbagh Fort Parking',
-      address: 'Lalbagh, Old Dhaka',
-      lat: 23.7186,
-      lng: 90.3854,
-      totalCapacity: 50,
-      availableSpots: 5,
-      pricePerHour: 12.0,
-      rating: 3.6,
-      openTime: '6:00 AM',
-      closeTime: '8:00 PM',
-      facilities: ['Security', 'Historical Site'],
-      distance: '4.2 km',
-    ),
+        id: '9',
+        name: 'Circular Quay Parking Station',
+        address: '16 Alfred St, Sydney NSW 2000, Australia',
+        lat: 23.7186,
+        lng: 90.3854,
+        totalCapacity: 50,
+        availableSpots: 5,
+        pricePerHour: 12.0,
+        rating: 3.6,
+        openTime: '6:00 AM',
+        closeTime: '8:00 PM',
+        facilities: ['Security', 'Historical Site'],
+        distance: '4.2 km',
+        isFree: false),
 
-    // West Dhaka
     ParkingSpot(
-      id: '10',
-      name: 'Mirpur DOHS Parking',
-      address: 'DOHS, Mirpur, Dhaka',
-      lat: 23.8223,
-      lng: 90.3654,
-      totalCapacity: 180,
-      availableSpots: 89,
-      pricePerHour: 18.0,
-      rating: 4.4,
-      openTime: '5:30 AM',
-      closeTime: '11:30 PM',
-      facilities: ['Security', 'CCTV', 'Covered', 'Playground'],
-      distance: '4.8 km',
-    ),
+        id: '10',
+        name: 'North Sydney Council Car Park',
+        address: '200 Miller St, North Sydney NSW 2060, Australia',
+        lat: 23.8223,
+        lng: 90.3654,
+        totalCapacity: 180,
+        availableSpots: 89,
+        pricePerHour: 18.0,
+        rating: 4.4,
+        openTime: '5:30 AM',
+        closeTime: '11:30 PM',
+        facilities: ['Security', 'CCTV', 'Covered', 'Playground'],
+        distance: '4.8 km',
+        isFree: false),
     ParkingSpot(
-      id: '11',
-      name: 'Shyamoli Parking Station',
-      address: 'Shyamoli, Dhaka',
-      lat: 23.7653,
-      lng: 90.3601,
-      totalCapacity: 95,
-      availableSpots: 31,
-      pricePerHour: 25.0,
-      rating: 4.0,
-      openTime: '6:00 AM',
-      closeTime: '11:00 PM',
-      facilities: ['Security', 'Covered', 'Restaurant'],
-      distance: '3.1 km',
-    ),
-
-    // East Dhaka
-    ParkingSpot(
-      id: '12',
-      name: 'Ramna Park Parking',
-      address: 'Ramna, Dhaka',
-      lat: 23.7378,
-      lng: 90.4039,
-      totalCapacity: 40,
-      availableSpots: 15,
-      pricePerHour: 30.0,
-      rating: 4.2,
-      openTime: '5:00 AM',
-      closeTime: '10:00 PM',
-      facilities: ['Security', 'Park View', 'Open Air'],
-      distance: '1.1 km',
-    ),
-    ParkingSpot(
-      id: '13',
-      name: 'Tejgaon Industrial Area',
-      address: 'Tejgaon, Dhaka',
-      lat: 23.7644,
-      lng: 90.3962,
-      totalCapacity: 250,
-      availableSpots: 156,
-      pricePerHour: 15.0,
-      rating: 3.9,
-      openTime: '24 Hours',
-      closeTime: '24 Hours',
-      facilities: ['Security', 'Industrial', 'Truck Parking'],
-      distance: '2.7 km',
-    ),
-
-    // Additional scattered spots
-    ParkingSpot(
-      id: '14',
-      name: 'Farmgate Metro Parking',
-      address: 'Farmgate, Dhaka',
-      lat: 23.7565,
-      lng: 90.3892,
-      totalCapacity: 110,
-      availableSpots: 44,
-      pricePerHour: 26.0,
-      rating: 4.1,
-      openTime: '5:00 AM',
-      closeTime: '12:00 AM',
-      facilities: ['Security', 'Metro Access', 'CCTV'],
-      distance: '2.4 km',
-    ),
-    ParkingSpot(
-      id: '15',
-      name: 'Mohakhali Bus Terminal',
-      address: 'Mohakhali, Dhaka',
-      lat: 23.7806,
-      lng: 90.4034,
-      totalCapacity: 300,
-      availableSpots: 78,
-      pricePerHour: 20.0,
-      rating: 3.7,
-      openTime: '24 Hours',
-      closeTime: '24 Hours',
-      facilities: ['Security', 'Bus Terminal', 'Food Court'],
-      distance: '1.9 km',
-    ),
+        id: '11',
+        name: 'Bondi Beach Public Car Park',
+        address:
+            'Bondi Beach, Queen Elizabeth Dr, Bondi Beach NSW 2026, Australia',
+        lat: 23.7653,
+        lng: 90.3601,
+        totalCapacity: 95,
+        availableSpots: 31,
+        pricePerHour: 25.0,
+        rating: 4.0,
+        openTime: '6:00 AM',
+        closeTime: '11:00 PM',
+        facilities: ['Security', 'Covered', 'Restaurant'],
+        distance: '3.1 km',
+        isFree: true),
+    //   id: '15',
+    //   name: 'Mohakhali Bus Terminal',
+    //   address: 'Mohakhali, Dhaka',
+    //   lat: 23.7806,
+    //   lng: 90.4034,
+    //   totalCapacity: 300,
+    //   availableSpots: 78,
+    //   pricePerHour: 20.0,
+    //   rating: 3.7,
+    //   openTime: '24 Hours',
+    //   closeTime: '24 Hours',
+    //   facilities: ['Security', 'Bus Terminal', 'Food Court'],
+    //   distance: '1.9 km',
+    // ),
   ];
 
   @override
@@ -313,6 +260,552 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _updateMarkers();
     });
+  }
+
+  // Book Now function for immediate booking
+  void _bookNow(ParkingSpot spot) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: const Row(
+            children: [
+              Icon(Icons.flash_on, color: Colors.orange),
+              SizedBox(width: 8),
+              Text('Book Now'),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Location: ${spot.name}'),
+              const SizedBox(height: 8),
+              Text('Start Time: ${_formatCurrentTime()}'),
+              const SizedBox(height: 8),
+              Text(
+                  'Rate: ${spot.isFree ? 'FREE' : '\$${spot.pricePerHour.toInt()}/hour'}'),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.orange.shade50,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.orange.shade200),
+                ),
+                child: const Row(
+                  children: [
+                    Icon(Icons.info, color: Colors.orange, size: 20),
+                    SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Your parking will start immediately upon confirmation.',
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _confirmBooking(spot, DateTime.now(), null);
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+              child: const Text('Confirm Booking',
+                  style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showScheduleBookingDialog(ParkingSpot spot) {
+    DateTime selectedDate = DateTime.now();
+    TimeOfDay selectedTime = TimeOfDay.now();
+    int duration = 1; // Default 1 hour
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              title: const Row(
+                children: [
+                  Icon(Icons.schedule, color: Colors.blue),
+                  SizedBox(width: 8),
+                  Text('Schedule Booking'),
+                ],
+              ),
+              content: SizedBox(
+                width: double.maxFinite,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Date Selection
+                    ListTile(
+                      leading: const Icon(Icons.calendar_today),
+                      title: const Text('Date'),
+                      subtitle: Text(_formatDate(selectedDate)),
+                      onTap: () async {
+                        final DateTime? picked = await showDatePicker(
+                          context: context,
+                          initialDate: selectedDate,
+                          firstDate: DateTime.now(),
+                          lastDate:
+                              DateTime.now().add(const Duration(days: 30)),
+                        );
+                        if (picked != null) {
+                          setState(() {
+                            selectedDate = picked;
+                          });
+                        }
+                      },
+                    ),
+
+                    // Time Selection
+                    ListTile(
+                      leading: const Icon(Icons.access_time),
+                      title: const Text('Start Time'),
+                      subtitle: Text(selectedTime.format(context)),
+                      onTap: () async {
+                        final TimeOfDay? picked = await showTimePicker(
+                          context: context,
+                          initialTime: selectedTime,
+                        );
+                        if (picked != null) {
+                          setState(() {
+                            selectedTime = picked;
+                          });
+                        }
+                      },
+                    ),
+
+                    // Duration Selection
+                    ListTile(
+                      leading: const Icon(Icons.timer),
+                      title: const Text('Duration'),
+                      subtitle:
+                          Text('$duration hour${duration > 1 ? 's' : ''}'),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            onPressed: duration > 1
+                                ? () => setState(() => duration--)
+                                : null,
+                            icon: const Icon(Icons.remove_circle_outline),
+                          ),
+                          IconButton(
+                            onPressed: () => setState(() => duration++),
+                            icon: const Icon(Icons.add_circle_outline),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    const Divider(),
+
+                    // Booking Summary
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade50,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Booking Summary',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade700,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text('Location: ${spot.name}'),
+                          Text('Date: ${_formatDate(selectedDate)}'),
+                          Text('Time: ${selectedTime.format(context)}'),
+                          Text(
+                              'Duration: $duration hour${duration > 1 ? 's' : ''}'),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Total Cost: ${spot.isFree ? 'FREE' : '\$${(spot.pricePerHour * duration).toInt()}'}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: spot.isFree ? Colors.green : Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('Cancel'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    final scheduledDateTime = DateTime(
+                      selectedDate.year,
+                      selectedDate.month,
+                      selectedDate.day,
+                      selectedTime.hour,
+                      selectedTime.minute,
+                    );
+                    _confirmBooking(spot, scheduledDateTime, duration);
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                  child: const Text('Schedule Booking',
+                      style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+// Confirm booking with payment handling
+  void _confirmBooking(ParkingSpot spot, DateTime startTime, int? duration) {
+    if (spot.isFree) {
+      // For free parking, directly confirm the booking
+      _processFreeBooking(spot, startTime, duration);
+    } else {
+      // For paid parking, show payment options
+      _showPaymentDialog(spot, startTime, duration);
+    }
+  }
+
+// Process free parking booking
+  void _processFreeBooking(
+      ParkingSpot spot, DateTime startTime, int? duration) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: const Row(
+            children: [
+              Icon(Icons.check_circle, color: Colors.green),
+              SizedBox(width: 8),
+              Text('Booking Confirmed!'),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.green.shade50,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.green.shade200),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'Booking ID: #${_generateBookingId()}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    Text('Location: ${spot.name}'),
+                    Text('Date & Time: ${_formatDateTime(startTime)}'),
+                    if (duration != null)
+                      Text(
+                          'Duration: $duration hour${duration > 1 ? 's' : ''}'),
+                    const SizedBox(height: 8),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: const Text(
+                        'FREE PARKING',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _hideDetails(); // Close the parking details sheet
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              child: const Text('Done', style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showPaymentDialog(ParkingSpot spot, DateTime startTime, int? duration) {
+    final totalCost = duration != null ? spot.pricePerHour * duration : 0.0;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: const Row(
+            children: [
+              Icon(Icons.payment, color: Colors.blue),
+              SizedBox(width: 8),
+              Text('Payment Options'),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Total Amount:'),
+                    Text(
+                      '\$${totalCost.toInt()}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              // Payment Method Options
+              _buildPaymentOption(
+                icon: Icons.account_balance_wallet,
+                title: 'Mobile Banking',
+                subtitle: 'bKash, Nagad, Rocket',
+                onTap: () => _processPayment(
+                    spot, startTime, duration, 'Mobile Banking'),
+              ),
+              _buildPaymentOption(
+                icon: Icons.credit_card,
+                title: 'Credit/Debit Card',
+                subtitle: 'Visa, MasterCard',
+                onTap: () => _processPayment(spot, startTime, duration, 'Card'),
+              ),
+              _buildPaymentOption(
+                icon: Icons.account_balance,
+                title: 'Internet Banking',
+                subtitle: 'All major banks',
+                onTap: () => _processPayment(
+                    spot, startTime, duration, 'Internet Banking'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+// Build payment option widget
+  Widget _buildPaymentOption({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        margin: const EdgeInsets.only(bottom: 8),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey.shade300),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: Colors.blue),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.arrow_forward_ios,
+                size: 16, color: Colors.grey.shade400),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _processPayment(ParkingSpot spot, DateTime startTime, int? duration,
+      String paymentMethod) {
+    Navigator.of(context).pop(); // Close payment dialog
+
+    // Show loading dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(height: 16),
+              Text('Processing payment...'),
+            ],
+          ),
+        );
+      },
+    );
+
+    // Simulate payment processing
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.of(context).pop(); // Close loading dialog
+      _showPaymentSuccess(spot, startTime, duration, paymentMethod);
+    });
+  }
+
+  void _showPaymentSuccess(ParkingSpot spot, DateTime startTime, int? duration,
+      String paymentMethod) {
+    final totalCost = duration != null ? spot.pricePerHour * duration : 0.0;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: const Row(
+            children: [
+              Icon(Icons.check_circle, color: Colors.green),
+              SizedBox(width: 8),
+              Text('Payment Successful!'),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.green.shade50,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.green.shade200),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'Booking ID: #${_generateBookingId()}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    Text('Location: ${spot.name}'),
+                    Text('Date & Time: ${_formatDateTime(startTime)}'),
+                    if (duration != null)
+                      Text(
+                          'Duration: $duration hour${duration > 1 ? 's' : ''}'),
+                    Text('Payment Method: $paymentMethod'),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Amount Paid: \$${totalCost.toInt()}',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _hideDetails(); // Close the parking details sheet
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              child: const Text('Done', style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  String _formatCurrentTime() {
+    final now = DateTime.now();
+    return '${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}';
+  }
+
+  String _formatDate(DateTime date) {
+    return '${date.day}/${date.month}/${date.year}';
+  }
+
+  String _formatDateTime(DateTime dateTime) {
+    return '${_formatDate(dateTime)} at ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';
+  }
+
+  String _generateBookingId() {
+    return DateTime.now().millisecondsSinceEpoch.toString().substring(7);
   }
 
   void _updateMarkers() {
@@ -621,7 +1114,7 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
 
   Widget _buildParkingDetailsSheet(ParkingSpot spot) {
     return Container(
-      height: 300,
+      height: MediaQuery.sizeOf(context).height - 120,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -699,6 +1192,49 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
 
                   const SizedBox(height: 16),
 
+                  // Payment Type Banner
+                  Container(
+                    width: double.infinity,
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: spot.isFree
+                          ? Colors.green.shade50
+                          : Colors.blue.shade50,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: spot.isFree
+                            ? Colors.green.shade200
+                            : Colors.blue.shade200,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          spot.isFree ? Icons.free_breakfast : Icons.payment,
+                          size: 16,
+                          color: spot.isFree
+                              ? Colors.green.shade700
+                              : Colors.blue.shade700,
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          spot.isFree ? 'FREE PARKING' : 'PAID PARKING',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            color: spot.isFree
+                                ? Colors.green.shade700
+                                : Colors.blue.shade700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
                   // Stats Row
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -712,10 +1248,12 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
                             : Colors.orange,
                       ),
                       _buildStatCard(
-                        icon: Icons.schedule,
-                        title: '৳${spot.pricePerHour.toInt()}',
-                        subtitle: 'per hour',
-                        color: Colors.blue,
+                        icon: spot.isFree ? Icons.money_off : Icons.schedule,
+                        title: spot.isFree
+                            ? 'FREE'
+                            : '\$${spot.pricePerHour.toInt()}',
+                        subtitle: spot.isFree ? 'No charge' : 'per hour',
+                        color: spot.isFree ? Colors.green : Colors.blue,
                       ),
                       _buildStatCard(
                         icon: Icons.star,
@@ -797,29 +1335,45 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
 
                   const Spacer(),
 
-                  // Reserve Button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 48,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _showReservationDialog(spot);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                  // Booking Options
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            _bookNow(spot);
+                          },
+                          icon: const Icon(Icons.flash_on, size: 18),
+                          label: const Text('Book Now'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.orange,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                          ),
                         ),
                       ),
-                      child: const Text(
-                        'Reserve Now',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            _showScheduleBookingDialog(spot);
+                          },
+                          icon: const Icon(Icons.schedule, size: 18),
+                          label: const Text('Schedule'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
@@ -924,7 +1478,7 @@ class _ParkingSearchPageState extends State<ParkingSearchPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                                '${spot.distance} • ৳${spot.pricePerHour.toInt()}/hr'),
+                                '${spot.distance} • \$${spot.pricePerHour.toInt()}/hr'),
                             Text(
                               '${spot.availableSpots} spots available',
                               style: TextStyle(
